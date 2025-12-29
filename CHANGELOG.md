@@ -1,3 +1,15 @@
+## 0.2.9+5
+
+### Added
+- **App Name in Output Filenames**: Build output files now include the app name from `pubspec.yaml`
+  - Format with environment: `{appName}_{target}_{env}_{version}_{build}.{ext}`
+  - Format without environment: `{appName}_{target}_{version}_{build}.{ext}`
+  - Example: `myApp_apk_production_1.0.0_1.apk`
+
+### New Commands
+- **`tezkor help`**: Display comprehensive usage instructions and examples
+- **`tezkor update`**: Self-update the CLI to the latest version from pub.dev
+
 ## 0.2.6+2
 
 ### New Features

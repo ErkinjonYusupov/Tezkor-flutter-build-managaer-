@@ -250,18 +250,19 @@ class BuildManager {
     try {
       final pubspecFile = File('${Directory.current.path}/pubspec.yaml');
       if (!pubspecFile.existsSync()) {
-        return {'version': '1.0.0', 'build': '1'};
+        return {'name': 'app', 'version': '1.0.0', 'build': '1'};
       }
 
       final pubspecContent = loadYaml(pubspecFile.readAsStringSync());
+      final name = pubspecContent['name']?.toString() ?? 'app';
       final versionField = pubspecContent['version']?.toString() ?? '1.0.0+1';
       final versionParts = versionField.split('+');
       final version = versionParts.isNotEmpty ? versionParts[0] : '1.0.0';
       final build = versionParts.length > 1 ? versionParts[1] : '1';
 
-      return {'version': version, 'build': build};
+      return {'name': name, 'version': version, 'build': build};
     } catch (e) {
-      return {'version': '1.0.0', 'build': '1'};
+      return {'name': 'app', 'version': '1.0.0', 'build': '1'};
     }
   }
 
@@ -304,11 +305,14 @@ class BuildManager {
       String target, String env, Map<String, dynamic> config) {
     try {
       final versionInfo = _getVersionInfo();
+      final name = versionInfo['name']!;
       final version = versionInfo['version']!;
       final buildNumber = versionInfo['build']!;
 
-      // Format: target_env_version_buildNumber
-      final newName = '${target}_${env.toLowerCase()}_${version}_$buildNumber';
+      // Format: appName_target_env_version_buildNumber
+      // Example: tezkor_apk_production_0.2.8_4
+      final newName =
+          '${name}_${target}_${env.toLowerCase()}_${version}_$buildNumber';
 
       // Config dan output_path olish
       String? outputPath = config['output_path'] as String?;
@@ -344,11 +348,13 @@ class BuildManager {
       String target, Map<String, dynamic> config) {
     try {
       final versionInfo = _getVersionInfo();
+      final name = versionInfo['name']!;
       final version = versionInfo['version']!;
       final buildNumber = versionInfo['build']!;
 
-      // Format: target_version_buildNumber (no environment)
-      final newName = '${target}_${version}_$buildNumber';
+      // Format: appName_target_version_buildNumber
+      // Example: tezkor_apk_0.2.8_4
+      final newName = '${name}_${target}_${version}_$buildNumber';
 
       // Config dan output_path olish
       String? outputPath = config['output_path'] as String?;
@@ -505,4 +511,5 @@ class BuildManager {
       }
     }
   }
+
 }
