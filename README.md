@@ -100,6 +100,31 @@ The `build_config.json` file is automatically created with default settings when
     "language": "uz"  // Uzbek interface (default)
     ```
 
+* `api` (optional): Base API URLs for different environments
+  - Automatically injects `--dart-define=API_BASE_URL=YOUR_URL` into build command
+  - Keys match environment names (production, staging, development)
+  - Example:
+    ```json
+    "api": {
+      "production": "https://api.production.com",
+      "staging": "https://api.staging.com",
+      "development": "https://api.dev.com"
+    }
+    ```
+
+### Usage in Flutter
+To access the API URL in your Flutter code, use `String.fromEnvironment`:
+
+```dart
+// 1. Get the URL (it will be injected by tezkor)
+const baseUrl = String.fromEnvironment('API_BASE_URL');
+
+// 2. Use it in Dio or Http client
+final dio = Dio(BaseOptions(
+  baseUrl: baseUrl,
+));
+```
+
 * `output_path` (optional): Path where built files will be copied after build
   - If not specified, files will only be renamed in the build directory
   - Can be absolute path (`/Users/you/releases`) or relative to project (`releases`)

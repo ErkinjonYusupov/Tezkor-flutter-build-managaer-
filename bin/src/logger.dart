@@ -111,16 +111,16 @@ class Logger {
         '🏃 Jarayon: {command}, Xo\'jayiin!'
       ],
       LogType.donation: [
-        '\n☕ Xo\'jayiin, agar tezkor yoqsa, menga bir choy pul tashlang: https://www.tirikchilik.uz/ahadjonovss\n   Qahva ichib, yanada zo\'r toollar yasayman! 😄',
-        '\n💰 Xo\'jayiin, bu tool foydali bo\'lsa, bir gap emas, donat qilaverasiz: https://www.tirikchilik.uz/ahadjonovss\n   Bir gap qilsangiz, yangi featurelar chiqaraman! 🚀',
-        '\n🎁 Xo\'jayiin, tezkor yordamchi bo\'lyaptimi? Unda shu linkka bir nazar: https://www.tirikchilik.uz/ahadjonovss\n   Sponsor bo\'ling, yanada kuchli qilib qo\'yamiz! 💪',
-        '\n🍕 Build tayyor bo\'ldi, endi mening navbat! Pizza uchun yordam bersangiz: https://www.tirikchilik.uz/ahadjonovss\n   Coding bilan pizza - eng zo\'r kombinatsiya! 🤩',
-        '\n🤑 Xo\'jayiin, bu tooldan foydalanib vaqtingizni tejadingizmi? Unda menga ham yordam qiling: https://www.tirikchilik.uz/ahadjonovss\n   Bitta kofe puli bo\'lsa ham, ruhim ko\'tariladi! ☕',
-        '\n💝 Ey Xo\'jayiin, tezkor sizga yoqdimi? Quvontirdimmi? Unda bir donationcha: https://www.tirikchilik.uz/ahadjonovss\n   Katta pul emas, dildan keladigani yetarli! 😊',
-        '\n🎯 Build muvaffaqiyatli! Endi meni ham unutmang: https://www.tirikchilik.uz/ahadjonovss\n   Sizning supportingiz bilan yanada zo\'r toollar yaratamiz! 🔥',
-        '\n🌟 Xo\'jayiin, open source developer hayoti qiyin-ku! Yordam qo\'lingizni cho\'zing: https://www.tirikchilik.uz/ahadjonovss\n   Bir lagmon puli ham katta gap! 🍜',
-        '\n🎊 Build tayyor, siz ham baxtli, men ham! Endi menga ham bir iltifoat: https://www.tirikchilik.uz/ahadjonovss\n   Support qilsangiz, keyingi versiya tezroq chiqadi! ⚡',
-        '\n😎 Xo\'jayiin, tezkor sizning vaqtingizni tejaydimi? Unda mening vaqtimni ham qadrlang: https://www.tirikchilik.uz/ahadjonovss\n   Bir choynak choy puli kerak xolos! 🍵'
+        '\n☕ Xo\'jayiin, agar tezkor yoqsa, menga bir choy pul tashlang: https://www.frontendchi.uz\n   Qahva ichib, yanada zo\'r toollar yasayman! 😄',
+        '\n💰 Xo\'jayiin, bu tool foydali bo\'lsa, bir gap emas, donat qilaverasiz: https://www.frontendchi.uz\n   Bir gap qilsangiz, yangi featurelar chiqaraman! 🚀',
+        '\n🎁 Xo\'jayiin, tezkor yordamchi bo\'lyaptimi? Unda shu linkka bir nazar: https://www.frontendchi.uz\n   Sponsor bo\'ling, yanada kuchli qilib qo\'yamiz! 💪',
+        '\n🍕 Build tayyor bo\'ldi, endi mening navbat! Pizza uchun yordam bersangiz: https://www.frontendchi.uz\n   Coding bilan pizza - eng zo\'r kombinatsiya! 🤩',
+        '\n🤑 Xo\'jayiin, bu tooldan foydalanib vaqtingizni tejadingizmi? Unda menga ham yordam qiling: https://www.frontendchi.uz\n   Bitta kofe puli bo\'lsa ham, ruhim ko\'tariladi! ☕',
+        '\n💝 Ey Xo\'jayiin, tezkor sizga yoqdimi? Quvontirdimmi? Unda bir donationcha: https://www.frontendchi.uz\n   Katta pul emas, dildan keladigani yetarli! 😊',
+        '\n🎯 Build muvaffaqiyatli! Endi meni ham unutmang: https://www.frontendchi.uz\n   Sizning supportingiz bilan yanada zo\'r toollar yaratamiz! 🔥',
+        '\n🌟 Xo\'jayiin, open source developer hayoti qiyin-ku! Yordam qo\'lingizni cho\'zing: https://www.frontendchi.uz\n   Bir lagmon puli ham katta gap! 🍜',
+        '\n🎊 Build tayyor, siz ham baxtli, men ham! Endi menga ham bir iltifoat: https://www.frontendchi.uz\n   Support qilsangiz, keyingi versiya tezroq chiqadi! ⚡',
+        '\n😎 Xo\'jayiin, tezkor sizning vaqtingizni tejaydimi? Unda mening vaqtimni ham qadrlang: https://www.frontendchi.uz\n   Bir choynak choy puli kerak xolos! 🍵'
       ],
       LogType.buildNumberIncremented: [
         '✅ Build number yangilandi: {oldBuild} → {newBuild}, Xo\'jayiin!',
@@ -170,16 +170,16 @@ class Logger {
         '🏃 Process: {command}, Boss!'
       ],
       LogType.donation: [
-        '\n☕ Boss, if you like tezkor, buy me a coffee: https://www.tirikchilik.uz/ahadjonovss\n   I\'ll make even better tools! 😄',
-        '\n💰 Boss, if this tool is useful, consider donating: https://www.tirikchilik.uz/ahadjonovss\n   Your support brings new features! 🚀',
-        '\n🎁 Boss, is tezkor helpful? Check out this link: https://www.tirikchilik.uz/ahadjonovss\n   Become a sponsor, let\'s make it even better! 💪',
-        '\n🍕 Build ready, now it\'s my turn! Help me get pizza: https://www.tirikchilik.uz/ahadjonovss\n   Coding with pizza - best combo! 🤩',
-        '\n🤑 Boss, did this tool save you time? Help me too: https://www.tirikchilik.uz/ahadjonovss\n   Even a coffee would brighten my day! ☕',
-        '\n💝 Hey Boss, do you like tezkor? Made you happy? Then donate: https://www.tirikchilik.uz/ahadjonovss\n   Not much needed, whatever comes from heart! 😊',
-        '\n🎯 Build successful! Don\'t forget about me: https://www.tirikchilik.uz/ahadjonovss\n   Your support helps create better tools! 🔥',
-        '\n🌟 Boss, open source dev life is tough! Lend a hand: https://www.tirikchilik.uz/ahadjonovss\n   Even small support means a lot! 🍜',
-        '\n🎊 Build ready, you\'re happy, me too! Now treat me: https://www.tirikchilik.uz/ahadjonovss\n   Support brings faster updates! ⚡',
-        '\n😎 Boss, does tezkor save your time? Value mine too: https://www.tirikchilik.uz/ahadjonovss\n   Just enough for tea! 🍵'
+        '\n☕ Boss, if you like tezkor, buy me a coffee: https://www.frontendchi.uz\n   I\'ll make even better tools! 😄',
+        '\n💰 Boss, if this tool is useful, consider donating: https://www.frontendchi.uz\n   Your support brings new features! 🚀',
+        '\n🎁 Boss, is tezkor helpful? Check out this link: https://www.frontendchi.uz\n   Become a sponsor, let\'s make it even better! 💪',
+        '\n🍕 Build ready, now it\'s my turn! Help me get pizza: https://www.frontendchi.uz\n   Coding with pizza - best combo! 🤩',
+        '\n🤑 Boss, did this tool save you time? Help me too: https://www.frontendchi.uz\n   Even a coffee would brighten my day! ☕',
+        '\n💝 Hey Boss, do you like tezkor? Made you happy? Then donate: https://www.frontendchi.uz\n   Not much needed, whatever comes from heart! 😊',
+        '\n🎯 Build successful! Don\'t forget about me: https://www.frontendchi.uz\n   Your support helps create better tools! 🔥',
+        '\n🌟 Boss, open source dev life is tough! Lend a hand: https://www.frontendchi.uz\n   Even small support means a lot! 🍜',
+        '\n🎊 Build ready, you\'re happy, me too! Now treat me: https://www.frontendchi.uz\n   Support brings faster updates! ⚡',
+        '\n😎 Boss, does tezkor save your time? Value mine too: https://www.frontendchi.uz\n   Just enough for tea! 🍵'
       ],
       LogType.buildNumberIncremented: [
         '✅ Build number updated: {oldBuild} → {newBuild}, Boss!',
@@ -229,16 +229,16 @@ class Logger {
         '🏃 Процесс: {command}, Босс!'
       ],
       LogType.donation: [
-        '\n☕ Босс, если tezkor нравится, купи мне кофе: https://www.tirikchilik.uz/ahadjonovss\n   Сделаю ещё лучшие инструменты! 😄',
-        '\n💰 Босс, если инструмент полезен, поддержи донатом: https://www.tirikchilik.uz/ahadjonovss\n   Твоя поддержка приносит новые фичи! 🚀',
-        '\n🎁 Босс, tezkor помогает? Загляни по ссылке: https://www.tirikchilik.uz/ahadjonovss\n   Стань спонсором, сделаем ещё круче! 💪',
-        '\n🍕 Сборка готова, теперь моя очередь! Помоги с пиццей: https://www.tirikchilik.uz/ahadjonovss\n   Код с пиццей - лучшее комбо! 🤩',
-        '\n🤑 Босс, инструмент сэкономил время? Помоги и мне: https://www.tirikchilik.uz/ahadjonovss\n   Даже кофе поднимет настроение! ☕',
-        '\n💝 Эй Босс, нравится tezkor? Порадовал? Тогда задонать: https://www.tirikchilik.uz/ahadjonovss\n   Много не нужно, сколько от души! 😊',
-        '\n🎯 Сборка успешна! Не забудь про меня: https://www.tirikchilik.uz/ahadjonovss\n   Твоя поддержка создаёт лучшие инструменты! 🔥',
-        '\n🌟 Босс, жизнь open source разработчика тяжела! Протяни руку: https://www.tirikchilik.uz/ahadjonovss\n   Даже малая поддержка важна! 🍜',
-        '\n🎊 Сборка готова, ты счастлив, я тоже! Теперь угости меня: https://www.tirikchilik.uz/ahadjonovss\n   Поддержка ускоряет обновления! ⚡',
-        '\n😎 Босс, tezkor экономит время? Цени и моё: https://www.tirikchilik.uz/ahadjonovss\n   Хватит на чай! 🍵'
+        '\n☕ Босс, если tezkor нравится, купи мне кофе: https://www.frontendchi.uz\n   Сделаю ещё лучшие инструменты! 😄',
+        '\n💰 Босс, если инструмент полезен, поддержи донатом: https://www.frontendchi.uz\n   Твоя поддержка приносит новые фичи! 🚀',
+        '\n🎁 Босс, tezkor помогает? Загляни по ссылке: https://www.frontendchi.uz\n   Стань спонсором, сделаем ещё круче! 💪',
+        '\n🍕 Сборка готова, теперь моя очередь! Помоги с пиццей: https://www.frontendchi.uz\n   Код с пиццей - лучшее комбо! 🤩',
+        '\n🤑 Босс, инструмент сэкономил время? Помоги и мне: https://www.frontendchi.uz\n   Даже кофе поднимет настроение! ☕',
+        '\n💝 Эй Босс, нравится tezkor? Порадовал? Тогда задонать: https://www.frontendchi.uz\n   Много не нужно, сколько от души! 😊',
+        '\n🎯 Сборка успешна! Не забудь про меня: https://www.frontendchi.uz\n   Твоя поддержка создаёт лучшие инструменты! 🔥',
+        '\n🌟 Босс, жизнь open source разработчика тяжела! Протяни руку: https://www.frontendchi.uz\n   Даже малая поддержка важна! 🍜',
+        '\n🎊 Сборка готова, ты счастлив, я тоже! Теперь угости меня: https://www.frontendchi.uz\n   Поддержка ускоряет обновления! ⚡',
+        '\n😎 Босс, tezkor экономит время? Цени и моё: https://www.frontendchi.uz\n   Хватит на чай! 🍵'
       ],
       LogType.buildNumberIncremented: [
         '✅ Build number обновлён: {oldBuild} → {newBuild}, Босс!',

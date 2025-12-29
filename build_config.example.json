@@ -1,4 +1,9 @@
 {
+  "api": {
+    "production": "https://api.production.com",
+    "staging": "https://api.staging.com",
+    "development": "https://api.dev.com"
+  },
   "output_path": "releases",
   "apk": {
     "production": "flutter build apk --release --flavor production",

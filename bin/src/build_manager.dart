@@ -63,6 +63,17 @@ class BuildManager {
       cmdString += ' ${extraFlags.join(' ')}';
     }
 
+    // Inject API URL if configured
+    if (env != null && config.containsKey('api')) {
+      final apiConfig = config['api'] as Map;
+      final apiUrl = apiConfig[env.toLowerCase()];
+      if (apiUrl != null && apiUrl.toString().isNotEmpty) {
+        cmdString += ' --dart-define=API_BASE_URL=$apiUrl';
+        Logger.log(LogType.info,
+            command: 'API URL injected: $apiUrl'); // Optional info log
+      }
+    }
+
     // Build boshlashdan oldin pubspec.yaml da build number oshirish
     // Only increment if environment is specified (flavor builds)
     if (env != null) {
