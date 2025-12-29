@@ -18,17 +18,17 @@
 ### Examples
 ```bash
 # With environment - increments version, renames: apk_production_1.2.3_46.apk
-dartdosh build apk --production
+tezkor build apk --production
 
 # Without environment - no version increment, renames: apk_1.2.3_46.apk
-dartdosh build apk
+tezkor build apk
 ```
 
 ## 0.2.4
 
 ### Features
 - 🎯 **Optional Environment**: Environment flags are now optional - run plain Flutter commands without flavors
-- 🔧 **Flexible Builds**: Use `dartdosh build apk` for simple builds without version management
+- 🔧 **Flexible Builds**: Use `tezkor build apk` for simple builds without version management
 - 📦 **Smart Behavior**: Version increment and file renaming only happen when environment is specified
 
 ### Changes
@@ -41,12 +41,12 @@ dartdosh build apk
 ### Examples
 ```bash
 # With environment (flavor build) - increments version, renames files
-dartdosh build apk --production
-dartdosh build apk -p
+tezkor build apk --production
+tezkor build apk -p
 
 # Without environment (plain Flutter build) - no version management
-dartdosh build apk
-dartdosh build ipa --release
+tezkor build apk
+tezkor build ipa --release
 ```
 
 ## 0.2.3
@@ -102,16 +102,16 @@ dartdosh build ipa --release
 ### Examples
 ```bash
 # All these commands work the same:
-dartdosh build apk --production
-dartdosh build apk -p
-dartdosh build apk -prod
+tezkor build apk --production
+tezkor build apk -p
+tezkor build apk -prod
 
-dartdosh build apk --development
-dartdosh build apk -d
-dartdosh build apk -dev
+tezkor build apk --development
+tezkor build apk -d
+tezkor build apk -dev
 
-dartdosh build apk --staging
-dartdosh build apk -s
+tezkor build apk --staging
+tezkor build apk -s
 ```
 
 ## 0.2.0
@@ -228,13 +228,13 @@ dartdosh build apk -s
 ## 0.1.6
 
 ### Features
-- 🎯 **Desktop Output Path**: Default output path now points to `~/Desktop/dartdosh-builds` instead of `releases`
+- 🎯 **Desktop Output Path**: Default output path now points to `~/Desktop/tezkor-builds` instead of `releases`
 - 📂 **Auto File Open**: Config file automatically opens in default editor after creation
 - 💬 **Improved Messages**: Better user feedback when config is created for first time
 - 🖥️ **Cross-Platform**: Supports macOS, Linux, and Windows for auto file opening
 
 ### Changes
-- Changed default `output_path` from `releases` to `~/Desktop/dartdosh-builds`
+- Changed default `output_path` from `releases` to `~/Desktop/tezkor-builds`
 - Added `_openConfigFile()` helper method for opening config in default editor
 - Enhanced console messages: "Xo'jayiin, default configlarni yaratdim, tekshirib ko'ring!"
 
@@ -255,7 +255,7 @@ dartdosh build apk -s
 
 ### Critical Bug Fix
 - 🔥 **Fixed Entry Point**: Updated main entry point to use the new CLI class architecture
-- 🐛 **Resolved Environment Detection**: Fixed critical issue where dartdosh.dart was using old ArgParser code instead of the new CLI class
+- 🐛 **Resolved Environment Detection**: Fixed critical issue where tezkor.dart was using old ArgParser code instead of the new CLI class
 - ✅ **Simplified Architecture**: Main entry point now properly delegates to CLI class for cleaner code organization
 
 ## 0.1.2
@@ -297,11 +297,11 @@ dartdosh build apk -s
 ### Examples
 ```bash
 # With output_path configured
-dartdosh build apk --production
+tezkor build apk --production
 # Result: releases/production_1.2.3_46.apk
 
 # Without output_path
-dartdosh build apk --staging
+tezkor build apk --staging
 # Result: build/app/outputs/flutter-apk/staging_1.2.3_46.apk
 ```
 
