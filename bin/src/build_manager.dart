@@ -104,7 +104,6 @@ class BuildManager {
         } else {
           _renameAndMoveOutputFileNoEnv(target, config);
         }
-        Logger.log(LogType.donation);
       } else {
         Logger.log(LogType.error, target: target, env: envDisplay);
       }
