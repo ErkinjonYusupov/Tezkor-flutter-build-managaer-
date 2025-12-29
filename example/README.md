@@ -1,15 +1,15 @@
-# DartDosh Example
+# Tezkor Example
 
-This example demonstrates how to use DartDosh CLI tool in your Flutter project.
+This example demonstrates how to use Tezkor CLI tool in your Flutter project.
 
 ## Setup
 
-1. Install DartDosh globally:
+1. Install Tezkor globally:
 ```bash
-dart pub global activate dartdosh
+dart pub global activate tezkor
 ```
 
-2. Create a `build_config.json` in your Flutter project root (or let DartDosh create it automatically):
+2. Create a `build_config.json` in your Flutter project root (or let Tezkor create it automatically):
 ```json
 {
   "output_path": "releases",
@@ -33,7 +33,7 @@ dart pub global activate dartdosh
 
 ### Build Production APK
 ```bash
-dartdosh build apk --production
+tezkor build apk --production
 ```
 
 Output:
@@ -50,7 +50,7 @@ Output:
 
 ### Build Split APK
 ```bash
-dartdosh build apk --production --split
+tezkor build apk --production --split
 ```
 
 This automatically converts `--split` to `--split-per-abi` and creates separate APKs for each architecture:
@@ -60,17 +60,17 @@ This automatically converts `--split` to `--split-per-abi` and creates separate 
 
 ### Build iOS IPA
 ```bash
-dartdosh build ipa --production
+tezkor build ipa --production
 ```
 
 ### Build App Bundle
 ```bash
-dartdosh build appbundle --staging
+tezkor build appbundle --staging
 ```
 
 ### Add Extra Flags
 ```bash
-dartdosh build apk --production --obfuscate --split-debug-info=/path/to/symbols
+tezkor build apk --production --obfuscate --split-debug-info=/path/to/symbols
 ```
 
 ## Features Demonstrated
@@ -83,10 +83,10 @@ dartdosh build apk --production --obfuscate --split-debug-info=/path/to/symbols
 
 ## First Time Usage
 
-If you run DartDosh without `build_config.json`, it will create one for you:
+If you run Tezkor without `build_config.json`, it will create one for you:
 
 ```bash
-dartdosh build apk --production
+tezkor build apk --production
 ```
 
 Output:

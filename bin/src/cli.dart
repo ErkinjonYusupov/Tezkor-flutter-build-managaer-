@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'build_manager.dart';
 
 /// Command-line interface handler for Tezkor build commands.
@@ -13,8 +14,22 @@ class CLI {
   ///
   /// Throws an [Exception] if the command format is invalid.
   Future<void> run(List<String> arguments) async {
-    if (arguments.isEmpty || arguments[0] != 'build') {
-      throw Exception('Invalid command');
+    if (arguments.isEmpty ||
+        arguments.contains('--help') ||
+        arguments.contains('-h') ||
+        arguments.contains('help')) {
+      _printHelp();
+      return;
+    }
+
+    if (arguments.contains('update')) {
+      await _updateCLI();
+      return;
+    }
+
+    if (arguments[0] != 'build') {
+      print('❌ Noto\'g\'ri buyruq. Yordam uchun: tezkor help');
+      return;
     }
 
     final target = arguments[1];
@@ -61,5 +76,53 @@ class CLI {
       return 'development';
     }
     return null; // No environment specified - use plain Flutter command
+  }
+
+  Future<void> _updateCLI() async {
+    print('🔄 Tezkor yangilanmoqda...');
+    try {
+      final result =
+          await Process.run('dart', ['pub', 'global', 'activate', 'tezkor']);
+      if (result.exitCode == 0) {
+        print('✅ Tezkor muvaffaqiyatli yangilandi, Xo\'jayiin!');
+        print(result.stdout);
+      } else {
+        print('❌ Yangilashda xatolik: ${result.stderr}');
+      }
+    } catch (e) {
+      print('❌ Xatolik: $e');
+    }
+  }
+
+  void _printHelp() {
+    print('''
+🌟 Tezkor CLI - Flutter loyihalarini boshqarish uchun yordamchi
+
+Foydalanish:
+  tezkor build <target> [environment] [options]
+  tezkor update
+
+Buyruqlar:
+  build             Dasturni qurish (apk, ipa, appbundle)
+  update            CLI ni eng so'nggi versiyaga yangilash
+  help              Yordam oynasini ko'rsatish
+
+Targetlar (builddan keyin):
+  apk               Android APK fayl yaratish
+  ipa               iOS IPA fayl yaratish
+  appbundle         Android App Bundle (.aab) yaratish
+
+Environmentlar (ixtiyoriy):
+  --production, -p  Production uchun build
+  --staging, -s     Staging uchun build
+  --development, -d Development uchun build
+
+Qo'shimcha:
+  --split           APK ni har bir arxitektura uchun alohida bo'lish
+
+Misollar:
+  tezkor build apk --production
+  tezkor update
+''');
   }
 }
