@@ -132,8 +132,8 @@ class BuildManager {
         "development": "flutter build apk --debug --flavor development"
       },
       "ipa": {
-        "production": "flutter build ipa --release --flavor production",
-        "staging": "flutter build ipa --release --flavor staging"
+        "production": "flutter build ipa",
+        "staging": "flutter build ipa"
       },
       "appbundle": {
         "production": "flutter build appbundle --release --flavor production",
@@ -511,5 +511,4 @@ class BuildManager {
       }
     }
   }
-
 }
