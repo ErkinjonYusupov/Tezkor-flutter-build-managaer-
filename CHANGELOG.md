@@ -1,9 +1,7 @@
 ## 0.2.6
 
-### Project Rename
-- 🚀 **New Name**: Project has been renamed from **DartDosh** to **Tezkor**
-- 📦 **Package**: `tezkor`
-- 🛠 **Executable**: `tezkor`
+### New Features
+- 🌐 **API Configuration**: Added optional `api` configuration support in `build_config.json` to inject `API_BASE_URL` via `--dart-define`
 
 ## 0.2.5
 
