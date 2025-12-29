@@ -1,4 +1,4 @@
-## 0.2.6
+## 0.2.6+2
 
 ### New Features
 - 🌐 **API Configuration**: Added optional `api` configuration support in `build_config.json` to inject `API_BASE_URL` via `--dart-define`
