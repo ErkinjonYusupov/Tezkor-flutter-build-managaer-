@@ -93,6 +93,17 @@ class BuildManager {
     // Only increment if environment is specified (flavor builds)
     if (env != null) {
       _incrementBuildNumber();
+
+      // Get the updated version info to inject into build command
+      final versionInfo = _getVersionInfo();
+      final version = versionInfo['version']!;
+      final buildNumber = versionInfo['build']!;
+
+      // Add --build-name and --build-number to force Flutter to use new version
+      cmdString += ' --build-name=$version --build-number=$buildNumber';
+
+      Logger.log(LogType.info,
+          command: '🔢 Forcing build with version: $version+$buildNumber');
     }
 
     final envDisplay = env ?? 'default';

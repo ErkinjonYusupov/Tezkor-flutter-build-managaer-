@@ -1,4 +1,4 @@
-## 0.2.10+6
+## 0.2.11+7
 
 ### Improvements
 - 🐛 **Enhanced Debugging**: Added comprehensive logging for API URL injection and version tracking
@@ -14,6 +14,10 @@
 ### Bug Fixes
 - 🔧 **API URL Injection**: Improved error messages when API configuration is missing or incorrect
 - 📦 **Version Tracking**: Better visibility into build number increment and file naming process
+- 🐛 **APK Internal Version**: Fixed critical issue where APK internal version (versionCode) didn't update despite build number increment
+  - Now explicitly passes `--build-name` and `--build-number` to Flutter build command
+  - Ensures APK uses the newly incremented version instead of cached values
+  - Fixes issue where APK file name was correct but internal version was old
 
 ## 0.2.9+5
 
