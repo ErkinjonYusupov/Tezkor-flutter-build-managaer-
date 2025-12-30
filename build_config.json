@@ -1,0 +1,18 @@
+{
+  "language": "uz",
+  "output_path": "/Users/yusupoverkinjon/Desktop/tezkor-builds",
+  "apk": {
+    "production": "flutter build apk --release --flavor production",
+    "staging": "flutter build apk --release --flavor staging",
+    "development": "flutter build apk --debug --flavor development"
+  },
+  "ipa": {
+    "production": "flutter build ipa",
+    "staging": "flutter build ipa"
+  },
+  "appbundle": {
+    "production": "flutter build appbundle --release --flavor production",
+    "staging": "flutter build appbundle --release --flavor staging",
+    "development": "flutter build appbundle --debug --flavor development"
+  }
+}

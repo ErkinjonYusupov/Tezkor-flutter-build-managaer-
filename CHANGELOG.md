@@ -1,3 +1,61 @@
+## 0.2.15+12
+
+### New Features
+- 🚀 **Auto Patch Version Increment**: Both patch version AND build number now increment automatically
+  - Old behavior: `2.1.27+99` → `2.1.27+100` (only build number)
+  - New behavior: `2.1.27+99` → `2.1.28+100` (patch + build number)
+  - Each build now gets a unique version name, not just build number
+  - Follows semantic versioning for better version tracking
+
+### Technical Changes
+- Updated `_incrementBuildNumber()` to also increment patch version (major.minor.patch)
+- Parses version string to extract major, minor, and patch numbers
+- Increments patch number by 1 on each build
+- Maintains backward compatibility with non-standard version formats
+
+### Examples
+```bash
+# Before (v0.2.14):
+# pubspec.yaml: version: 2.1.27+99
+tezkor build apk -s
+# Result: 2.1.27+100 (only build number incremented)
+
+# After (v0.2.15):
+# pubspec.yaml: version: 2.1.27+99
+tezkor build apk -s
+# Result: 2.1.28+100 (both patch and build number incremented)
+```
+
+## 0.2.14+11
+
+### Critical Bug Fixes
+- 🔥 **APK Version Cache Issue**: Fixed critical issue where APK internal version was one build number behind the filename
+  - Added automatic `flutter clean` before each flavor build to clear cached version info
+  - Ensures APK internal version matches the incremented build number
+  - Fixes issue where filename shows v100 but APK contains v99
+  - Build cache is now cleaned after version increment but before build execution
+
+### Improvements
+- 🌐 **API Configuration in Default Config**: Default `build_config.json` now includes `api` section
+  - New projects get API URL injection configuration out of the box
+  - Template includes placeholder URLs for production, staging, and development environments
+  - Makes API URL injection feature more discoverable for new users
+- 🧹 **Automatic Cache Management**: Build process now handles cache cleanup automatically
+  - No need to manually run `flutter clean` before builds
+  - Ensures fresh build with correct version every time
+  - Only runs for flavor builds (when environment is specified)
+
+### Technical Changes
+- Added `flutter clean` execution in BuildManager after version increment (line 108-122)
+- Updated default config template to include `api` section with example URLs
+- Cache cleaning runs asynchronously and reports success/failure in logs
+- Warnings shown if cache cleaning fails, but build continues
+
+### Migration Notes
+- No breaking changes - existing configs continue to work
+- New configs will have `api` section by default
+- Update your `build_config.json` with real API URLs to enable API injection
+
 ## 0.2.11+7
 
 ### Improvements

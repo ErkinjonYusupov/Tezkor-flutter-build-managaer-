@@ -104,6 +104,22 @@ class BuildManager {
 
       Logger.log(LogType.info,
           command: '🔢 Forcing build with version: $version+$buildNumber');
+
+      // Clean build cache to ensure new version is applied
+      Logger.log(LogType.info, command: '🧹 Cleaning build cache...');
+      try {
+        final cleanResult = await Process.run(
+          'flutter',
+          ['clean'],
+          workingDirectory: Directory.current.path,
+        );
+        if (cleanResult.exitCode == 0) {
+          Logger.log(LogType.info, command: '✅ Build cache cleaned');
+        }
+      } catch (e) {
+        Logger.log(LogType.info,
+            command: '⚠️  Warning: Could not clean cache: $e');
+      }
     }
 
     final envDisplay = env ?? 'default';
@@ -164,6 +180,11 @@ class BuildManager {
         "production": "flutter build appbundle --release --flavor production",
         "staging": "flutter build appbundle --release --flavor staging",
         "development": "flutter build appbundle --debug --flavor development"
+      },
+      "api": {
+        "production": "https://your-production-api.com/api",
+        "staging": "https://your-staging-api.com/api",
+        "development": "https://your-development-api.com/api"
       }
     };
 
@@ -291,7 +312,7 @@ class BuildManager {
     }
   }
 
-  // Build number ni +1 qilish
+  // Build number va patch version ni +1 qilish
   void _incrementBuildNumber() {
     try {
       final pubspecFile = File('${Directory.current.path}/pubspec.yaml');
@@ -308,8 +329,20 @@ class BuildManager {
           versionParts.length > 1 ? int.tryParse(versionParts[1]) ?? 1 : 1;
       final newBuild = currentBuild + 1;
 
-      // Yangi version stringini yaratish
-      final newVersion = '$version+$newBuild';
+      // Version name ni parse qilish va patch ni oshirish (major.minor.patch)
+      final versionNumbers = version.split('.');
+      String newVersionName = version;
+
+      if (versionNumbers.length >= 3) {
+        final major = versionNumbers[0];
+        final minor = versionNumbers[1];
+        final patch = int.tryParse(versionNumbers[2]) ?? 0;
+        final newPatch = patch + 1;
+        newVersionName = '$major.$minor.$newPatch';
+      }
+
+      // Yangi version stringini yaratish (version+build)
+      final newVersion = '$newVersionName+$newBuild';
 
       // Faylni yangilash (regex bilan version qatorini topib almashtirish)
       final updatedContent = content.replaceFirst(
