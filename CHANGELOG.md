@@ -1,3 +1,20 @@
+## 0.2.10+6
+
+### Improvements
+- 🐛 **Enhanced Debugging**: Added comprehensive logging for API URL injection and version tracking
+  - API environment and configuration are now logged during build
+  - Build number increment shows old and new version numbers
+  - APK file naming process logs version info being used
+- 🔍 **Better Diagnostics**: Easier to identify issues with staging API and version numbers
+  - Shows which environment is detected
+  - Displays available API configurations
+  - Confirms which API URL is injected
+  - Logs version info used for file naming
+
+### Bug Fixes
+- 🔧 **API URL Injection**: Improved error messages when API configuration is missing or incorrect
+- 📦 **Version Tracking**: Better visibility into build number increment and file naming process
+
 ## 0.2.9+5
 
 ### Added

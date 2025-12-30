@@ -66,11 +66,26 @@ class BuildManager {
     // Inject API URL if configured
     if (env != null && config.containsKey('api')) {
       final apiConfig = config['api'] as Map;
+
+      // Debug: Log environment and available API configs
+      Logger.log(LogType.info, command: '🔍 Environment: $env');
+      Logger.log(LogType.info,
+          command: '🔍 Available API configs: ${apiConfig.keys.join(", ")}');
+
       final apiUrl = apiConfig[env.toLowerCase()];
+
       if (apiUrl != null && apiUrl.toString().isNotEmpty) {
         cmdString += ' --dart-define=API_BASE_URL=$apiUrl';
         Logger.log(LogType.info,
-            command: 'API URL injected: $apiUrl'); // Optional info log
+            command: '✅ API URL injected for $env: $apiUrl');
+      } else {
+        Logger.log(LogType.info,
+            command: '⚠️  No API URL found for environment: $env');
+      }
+    } else {
+      if (env != null) {
+        Logger.log(LogType.info,
+            command: '⚠️  No "api" section in build_config.json');
       }
     }
 
@@ -294,8 +309,15 @@ class BuildManager {
       pubspecFile.writeAsStringSync(updatedContent);
       Logger.log(LogType.buildNumberIncremented,
           oldBuild: currentBuild.toString(), newBuild: newBuild.toString());
+
+      // Debug: Log full version info
+      Logger.log(LogType.info,
+          command: '📦 Old version: $version+$currentBuild');
+      Logger.log(LogType.info, command: '📦 New version: $newVersion');
     } catch (e) {
       // Xatolik bo'lsa, davom ettirish
+      Logger.log(LogType.info,
+          command: '⚠️  Error incrementing build number: $e');
     }
   }
 
@@ -308,10 +330,17 @@ class BuildManager {
       final version = versionInfo['version']!;
       final buildNumber = versionInfo['build']!;
 
+      // Debug: Log version info being used for file naming
+      Logger.log(LogType.info,
+          command:
+              '📝 Creating file name with: $name v$version build $buildNumber');
+
       // Format: appName_target_env_version_buildNumber
       // Example: tezkor_apk_production_0.2.8_4
       final newName =
           '${name}_${target}_${env.toLowerCase()}_${version}_$buildNumber';
+
+      Logger.log(LogType.info, command: '📝 Output file name: $newName');
 
       // Config dan output_path olish
       String? outputPath = config['output_path'] as String?;
