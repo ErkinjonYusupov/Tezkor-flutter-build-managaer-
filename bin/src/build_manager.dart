@@ -11,7 +11,7 @@ import 'logger.dart';
 class BuildManager {
   /// Executes a Flutter build for the specified [target] and [env]ironment.
   ///
-  /// The [target] can be 'apk', 'ipa', or 'appbundle'.
+  /// The [target] can be 'apk', 'ipa', 'appbundle', 'win', or 'mac'.
   /// The [env] specifies the build environment (production, staging, development).
   /// If [env] is null, runs plain Flutter build command without flavor.
   /// Optional [extraFlags] are appended to the build command.
@@ -38,7 +38,7 @@ class BuildManager {
 
     // If no environment specified, use plain Flutter build command
     if (env == null) {
-      cmdString = 'flutter build $target';
+      cmdString = 'flutter build ${_flutterBuildTarget(target)}';
     } else {
       cmdString = config[target]?[env.toLowerCase()] ?? '';
 
@@ -154,6 +154,18 @@ class BuildManager {
     }
   }
 
+  // Qisqa target nomini (win, mac) haqiqiy Flutter build targetiga aylantirish
+  String _flutterBuildTarget(String target) {
+    switch (target) {
+      case 'win':
+        return 'windows';
+      case 'mac':
+        return 'macos';
+      default:
+        return target;
+    }
+  }
+
   // Default config yaratish
   void _createDefaultConfig(File configFile) {
     // Get Desktop path cross-platform
@@ -173,13 +185,23 @@ class BuildManager {
         "development": "flutter build apk --debug --flavor development"
       },
       "ipa": {
-        "production": "flutter build ipa",
-        "staging": "flutter build ipa"
+        "production": "flutter build ipa --release",
+        "staging": "flutter build ipa --release"
       },
       "appbundle": {
         "production": "flutter build appbundle --release --flavor production",
         "staging": "flutter build appbundle --release --flavor staging",
         "development": "flutter build appbundle --debug --flavor development"
+      },
+      "win": {
+        "production": "flutter build windows --release",
+        "staging": "flutter build windows --release",
+        "development": "flutter build windows --debug"
+      },
+      "mac": {
+        "production": "flutter build macos --release",
+        "staging": "flutter build macos --release",
+        "development": "flutter build macos --debug"
       },
       "api": {
         "production": "https://your-production-api.com/api",
@@ -409,6 +431,10 @@ class BuildManager {
         _renameAndMoveIpa(newName, outputPath);
       } else if (target == 'appbundle' || target == 'aab') {
         _renameAndMoveAab(newName, outputPath);
+      } else if (target == 'win' || target == 'windows') {
+        _renameAndMoveWindows(newName, outputPath);
+      } else if (target == 'mac' || target == 'macos') {
+        _renameAndMoveMacos(newName, outputPath);
       }
     } catch (e) {
       // Xatolik bo'lsa davom ettirish
@@ -451,6 +477,10 @@ class BuildManager {
         _renameAndMoveIpa(newName, outputPath);
       } else if (target == 'appbundle' || target == 'aab') {
         _renameAndMoveAab(newName, outputPath);
+      } else if (target == 'win' || target == 'windows') {
+        _renameAndMoveWindows(newName, outputPath);
+      } else if (target == 'mac' || target == 'macos') {
+        _renameAndMoveMacos(newName, outputPath);
       }
     } catch (e) {
       // Xatolik bo'lsa davom ettirish
@@ -580,6 +610,72 @@ class BuildManager {
           Logger.log(LogType.fileSaved, path: fileName);
         }
         return;
+      }
+    }
+  }
+
+  // Windows build (papka: exe + kerakli dll fayllar) ni output_path ga ko'chirish
+  void _renameAndMoveWindows(String newName, String? outputPath) {
+    final releaseDirs = [
+      'build/windows/x64/runner/Release',
+      'build/windows/runner/Release',
+    ];
+
+    for (final path in releaseDirs) {
+      final sourceDir = Directory('${Directory.current.path}/$path');
+      if (sourceDir.existsSync()) {
+        final destParent =
+            (outputPath != null && outputPath.isNotEmpty)
+                ? outputPath
+                : sourceDir.parent.path;
+        final destDir = Directory('$destParent/$newName');
+
+        _copyDirectorySync(sourceDir, destDir);
+        Logger.log(LogType.fileSaved, path: destDir.path);
+        return;
+      }
+    }
+  }
+
+  // macOS build (.app bundle) ni output_path ga ko'chirish
+  void _renameAndMoveMacos(String newName, String? outputPath) {
+    final buildDir = Directory(
+        '${Directory.current.path}/build/macos/Build/Products/Release');
+
+    if (!buildDir.existsSync()) return;
+
+    final appBundles =
+        buildDir.listSync().where((e) => e is Directory && e.path.endsWith('.app'));
+
+    for (final appBundle in appBundles) {
+      if (appBundle is Directory) {
+        final destParent =
+            (outputPath != null && outputPath.isNotEmpty)
+                ? outputPath
+                : appBundle.parent.path;
+        final destDir = Directory('$destParent/$newName.app');
+
+        _copyDirectorySync(appBundle, destDir);
+        Logger.log(LogType.fileSaved, path: destDir.path);
+        return;
+      }
+    }
+  }
+
+  // Papkani (va ichidagi barcha fayl/pastki papkalarni) rekursiv ko'chirish
+  void _copyDirectorySync(Directory source, Directory destination) {
+    if (!destination.existsSync()) {
+      destination.createSync(recursive: true);
+    }
+
+    for (final entity in source.listSync()) {
+      final name = entity.uri.pathSegments.where((s) => s.isNotEmpty).last;
+      final newPath = '${destination.path}/$name';
+
+      if (entity is Directory) {
+        _copyDirectorySync(entity, Directory(newPath));
+      } else if (entity is File) {
+        entity.copySync(newPath);
       }
     }
   }

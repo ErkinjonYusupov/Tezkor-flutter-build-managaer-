@@ -9,7 +9,7 @@ class CLI {
   /// Runs the CLI with the provided [arguments].
   ///
   /// Expects arguments in the format: `build <target> [--<environment>] [flags]`
-  /// where target can be `apk`, `ipa`, or `appbundle`.
+  /// where target can be `apk`, `ipa`, `appbundle`, `win`, or `mac`.
   /// Environment is optional - if not provided, runs plain Flutter build command.
   ///
   /// Throws an [Exception] if the command format is invalid.
@@ -84,7 +84,7 @@ class CLI {
       final result =
           await Process.run('dart', ['pub', 'global', 'activate', 'tezkor']);
       if (result.exitCode == 0) {
-        print('✅ Tezkor muvaffaqiyatli yangilandi, Xo\'jayiin!');
+        print('✅ Tezkor muvaffaqiyatli yangilandi!');
         print(result.stdout);
       } else {
         print('❌ Yangilashda xatolik: ${result.stderr}');
@@ -103,7 +103,7 @@ Foydalanish:
   tezkor update
 
 Buyruqlar:
-  build             Dasturni qurish (apk, ipa, appbundle)
+  build             Dasturni qurish (apk, ipa, appbundle, win, mac)
   update            CLI ni eng so'nggi versiyaga yangilash
   help              Yordam oynasini ko'rsatish
 
@@ -111,6 +111,8 @@ Targetlar (builddan keyin):
   apk               Android APK fayl yaratish
   ipa               iOS IPA fayl yaratish
   appbundle         Android App Bundle (.aab) yaratish
+  win               Windows uchun desktop build (.exe) yaratish
+  mac               macOS uchun desktop build (.app) yaratish
 
 Environmentlar (ixtiyoriy):
   --production, -p  Production uchun build

@@ -86,9 +86,9 @@ class Logger {
         '🏁 Jarayon boshlandi: {target} ({env}),'
       ],
       LogType.step: [
-        '🔧 {target} build bosqichi: Flutter komandalar bajarilmoqda, Xo\'jayiin...',
-        '⚙️ Jarayon: Build bosqichlari ishlamoqda, Xo\'jayiin...',
-        '🛠️ Step: {target} build jarayoni davom etmoqda, Xo\'jayiin...'
+        '🔧 {target} build bosqichi: Flutter komandalar bajarilmoqda...',
+        '⚙️ Jarayon: Build bosqichlari ishlamoqda...',
+        '🛠️ Step: {target} build jarayoni davom etmoqda...'
       ],
       LogType.success: [
         '✅ {target} build muvaffaqiyatli yakunlandi,',

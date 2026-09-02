@@ -1,3 +1,20 @@
+## 0.2.16+13
+
+### New Features
+- 🖥️ **Windows & macOS Build Support**: New `win` and `mac` build targets
+  - `tezkor build win --production` → runs `flutter build windows --release`
+  - `tezkor build mac --production` → runs `flutter build macos --release`
+  - Windows release folder (exe + dependencies) and the macOS `.app` bundle are automatically copied and renamed into `output_path`, versioned just like APK/IPA/AAB outputs
+
+### Improvements
+- ⚙️ **Explicit Build Modes**: `apk`, `ipa`, and `appbundle` default commands now explicitly pass `--release` (production/staging) or `--debug` (development) instead of relying on Flutter's implicit default, matching the new `win`/`mac` targets
+- 🧹 **Cleaner CLI Messages**: Removed the "Xo'jayiin"/"Boss" personalized addressing from CLI step and update messages
+
+### Technical Changes
+- Added `_renameAndMoveWindows()`, `_renameAndMoveMacos()`, and a recursive `_copyDirectorySync()` helper to `BuildManager` for handling folder/bundle-based build outputs
+- Added `_flutterBuildTarget()` mapping so short target aliases (`win`, `mac`) resolve to Flutter's actual target names (`windows`, `macos`) when no environment flag is passed
+- Updated default `build_config.json` template with `win`/`mac` sections and explicit `--release`/`--debug` flags
+
 ## 0.2.15+12
 
 ### New Features

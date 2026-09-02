@@ -6,17 +6,27 @@
   },
   "output_path": "releases",
   "apk": {
-    "production": "flutter build apk --release --flavor production",
-    "staging": "flutter build apk --release --flavor staging",
-    "development": "flutter build apk --debug --flavor development"
+    "production": "flutter build apk --release",
+    "staging": "flutter build apk --release",
+    "development": "flutter build apk --debug"
   },
   "ipa": {
-    "production": "flutter build ipa --release --flavor production",
-    "staging": "flutter build ipa --release --flavor staging"
+    "production": "flutter build ipa --release",
+    "staging": "flutter build ipa --release"
   },
   "appbundle": {
-    "production": "flutter build appbundle --release --flavor production",
-    "staging": "flutter build appbundle --release --flavor staging",
-    "development": "flutter build appbundle --debug --flavor development"
+    "production": "flutter build appbundle --release",
+    "staging": "flutter build appbundle --release",
+    "development": "flutter build appbundle --debug"
+  },
+  "win": {
+    "production": "flutter build windows --release",
+    "staging": "flutter build windows --release",
+    "development": "flutter build windows --debug"
+  },
+  "mac": {
+    "production": "flutter build macos --release",
+    "staging": "flutter build macos --release",
+    "development": "flutter build macos --debug"
   }
 }
