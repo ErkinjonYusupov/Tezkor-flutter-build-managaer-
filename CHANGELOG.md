@@ -1,3 +1,11 @@
+## 0.2.17+14
+
+### Bug Fixes
+- 🪟 **Fixed Windows Output Path Detection**: `output_path` absolute-path check only recognized Unix-style paths (`/...`), so a Windows path like `C:\Users\Name\Desktop\tezkor-builds` was wrongly treated as relative and concatenated with the project directory, producing an invalid path. This silently failed (caught by an empty `catch` block), so the `tezkor-builds` folder was never created and no file was copied on Windows.
+  - Added `_isAbsolutePath()` to correctly detect Unix, Windows drive-letter (`C:\`, `C:/`), and UNC (`\\server\share`) paths
+  - File-move errors are now logged instead of being silently swallowed
+- 🏷️ **Windows `.exe` Now Versioned**: `_renameAndMoveWindows()` only renamed the containing output folder, leaving the `.exe` inside with its original build name. The main `.exe` is now also renamed to match the versioned output name (e.g. `tezkor_win_production_0.2.17_14.exe`), consistent with how `apk`/`aab`/`ipa`/`mac` outputs are named.
+
 ## 0.2.16+13
 
 ### New Features

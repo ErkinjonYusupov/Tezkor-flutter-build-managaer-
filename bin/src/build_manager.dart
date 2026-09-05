@@ -154,6 +154,12 @@ class BuildManager {
     }
   }
 
+  // Path absolyut ekanligini cross-platform (Unix "/", Windows "C:\" yoki "\\server\share") tekshirish
+  bool _isAbsolutePath(String path) {
+    if (path.startsWith('/') || path.startsWith('\\\\')) return true;
+    return RegExp(r'^[a-zA-Z]:[\\/]').hasMatch(path);
+  }
+
   // Qisqa target nomini (win, mac) haqiqiy Flutter build targetiga aylantirish
   String _flutterBuildTarget(String target) {
     switch (target) {
@@ -413,7 +419,7 @@ class BuildManager {
 
       if (outputPath != null && outputPath.isNotEmpty) {
         // Output path ni to'liq path ga aylantirish
-        if (!outputPath.startsWith('/')) {
+        if (!_isAbsolutePath(outputPath)) {
           outputPath = '${Directory.current.path}/$outputPath';
         }
 
@@ -437,7 +443,7 @@ class BuildManager {
         _renameAndMoveMacos(newName, outputPath);
       }
     } catch (e) {
-      // Xatolik bo'lsa davom ettirish
+      Logger.log(LogType.info, command: '⚠️  Fayl ko\'chirishda xatolik: $e');
     }
   }
 
@@ -459,7 +465,7 @@ class BuildManager {
 
       if (outputPath != null && outputPath.isNotEmpty) {
         // Output path ni to'liq path ga aylantirish
-        if (!outputPath.startsWith('/')) {
+        if (!_isAbsolutePath(outputPath)) {
           outputPath = '${Directory.current.path}/$outputPath';
         }
 
@@ -483,7 +489,7 @@ class BuildManager {
         _renameAndMoveMacos(newName, outputPath);
       }
     } catch (e) {
-      // Xatolik bo'lsa davom ettirish
+      Logger.log(LogType.info, command: '⚠️  Fayl ko\'chirishda xatolik: $e');
     }
   }
 
@@ -631,6 +637,17 @@ class BuildManager {
         final destDir = Directory('$destParent/$newName');
 
         _copyDirectorySync(sourceDir, destDir);
+
+        // Asosiy .exe faylni topib, versiyalangan nom bilan qayta nomlash
+        final exeFiles = destDir
+            .listSync()
+            .whereType<File>()
+            .where((f) => f.path.toLowerCase().endsWith('.exe'))
+            .toList();
+        if (exeFiles.isNotEmpty) {
+          exeFiles.first.renameSync('${destDir.path}/$newName.exe');
+        }
+
         Logger.log(LogType.fileSaved, path: destDir.path);
         return;
       }
